@@ -1,0 +1,164 @@
+
+.form-sorteo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 1em;
+    padding: 5em 1em;
+    border-radius: 20px;
+    background-color: var(--background1);
+    color: var(--text);
+    position: relative;
+    animation: fadeIn .5s;
+}
+
+.title-form{
+    font-size: 2em;
+    font-weight: bold;
+    position: absolute;
+    top: .5em;
+}
+
+.container-participantes {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.participante{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.2em;
+}
+
+.container-btnRemove{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.container-podio {
+    width: 100%;
+    animation: fadeIn 1s;
+}
+
+.podio {
+    display: grid;
+    grid-template-columns: 40px 1fr 80px;
+    gap: 1em;
+    justify-items: start;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 2px solid;
+}
+
+.podio:last-child{
+    border-bottom: none;
+}
+
+
+.img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+}
+
+.podio img {
+    position: relative;
+    margin: auto;
+}
+
+.podio span {
+    font-size: 2em;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+
+.position {
+    margin-top: 10px;
+    font-family: 'Contrail One', cursive;
+}
+
+.form-input {
+    padding: .5em;
+    background: none;
+    border: 2px solid var(--color2);
+    border-radius: 16px;
+    color: var(--text);
+    animation: fadeIn .5s ease-in-out;
+
+}
+
+.form-input:focus-visible {
+    outline: none;
+    border: 2px solid var(--color1);
+    transition: .5s;
+}
+
+.container-buttons {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    position: absolute;
+    bottom: 1.5em;
+}
+
+.button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    cursor: pointer;
+    color: white;
+}
+
+.button-remove, .button-add{
+    border-radius: 50%;
+}
+
+.button-remove{
+    width: 25px;
+    height: 25px;
+    /* display: none; */
+    animation: fadeIn 1s;
+    color: #808080;
+    /* background: var(--color3); */
+}
+
+.button-add {
+    width: 40px;
+    height: 40px;
+    background-color: var(--color4);
+    position: absolute;
+    left: 1em;
+}
+
+.button-sortear {
+    background-color: var(--color2);
+    border-radius: 16px;
+    padding: .5em 1em;
+    user-select: none;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 100%;
+    }
+}
+
+@keyframes widthFull {
+    0% {
+        width: 300px;
+    }
+
+    100% {
+        width: 335px;
+    }
+}

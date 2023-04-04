@@ -1,1 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
+:root {
+    --background1: #191f24;
+    --background2: #101417;
+    --text: #ADD9F4;
+    --color1: #468C98;
+    --color2: #476C9B;
+    --color3: #c5181e;
+    --color4: #37a746;
+}
+
+.container-bg {
+    background-color: var(--background2);
+    width: 100%;
+    height: 100vh;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
