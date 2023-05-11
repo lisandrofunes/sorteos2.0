@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { ActivatedRoute, ActivatedRouteSnapshot, NavigationEnd, Router } from '@angular/router';
 import { ParticipanteHandle } from '../models/participante';
 import { Sorteo } from '../models/sorteo';
@@ -11,13 +11,21 @@ import { SorteoService } from '../Service/sorteo.service';
 })
 
 export class SorteoComponent {
+  @ViewChild('formSorteo') formSorteo!: HTMLFormElement;
   inputCount = 1;
   inputArray = [''];
   valorInput = [''];
   resultadoSorteo: string[] = [];
   participantes: ParticipanteHandle[] = [];
   isSorteado = false;
-  isHidden = true;
+  btnRemoveIsHidden = true;
+  equipos = [2, 3, 4, 5];
+  pxe = [2, 3, 4, 5];
+  // teamDefault = this.equipos[1];
+  teamSelected = this.equipos[0];
+  pxeSelected = this.pxe[0]
+  isMakeTeam = false;
+
 
   constructor(
     private sorteoService: SorteoService,
@@ -28,14 +36,37 @@ export class SorteoComponent {
   ngOnInit(): void {
     this.route.params.subscribe(
       params=>{
-        this.changeNameSorteo(params['id'])
+        this.setSorteo(params['id'])
       }
     )
   }
 
-  changeNameSorteo(parametro:string){
-    // const parametro = this.route.snapshot.paramMap.get('id');
+  inputs(){
+    let x = this.teamSelected;
+    let y = this.pxeSelected;
 
+    this.inputArray.splice(0, this.inputArray.length);
+    this.valorInput.splice(0, this.valorInput.length);
+
+    this.inputCount = x*y;
+    for (let i = 0; i < x*y; i++) {
+      this.inputArray.push('');
+      this.valorInput.push('');
+    }
+
+  }
+
+  setSorteo(parametro:string){
+    // const parametro = this.route.snapshot.paramMap.get('id');
+    this.isMakeTeam = false;
+    this.inputCount = 1;
+    this.inputArray = [''];
+    this.valorInput = [''];
+    this.btnRemoveIsHidden = true;
+    this.resultadoSorteo = [];
+    this.participantes = [];
+    this.isSorteado = false;
+  
     const titleSorteo = document.querySelector('.title-form');
     switch (parametro) {
       case '0':
@@ -43,7 +74,13 @@ export class SorteoComponent {
       break;
 
       case '1':
-        titleSorteo!.innerHTML = "Formar Parejas";
+        titleSorteo!.innerHTML = "Enfrentamientos";
+      break;
+
+      case '2':
+        titleSorteo!.innerHTML = "Formar Equipos";
+        this.isMakeTeam = true;
+        this.inputs();
       break;
     
       default:
@@ -52,12 +89,11 @@ export class SorteoComponent {
     }
   }
 
-
   addParticipante() {
     this.inputCount++;
     this.inputArray.push('');
     this.valorInput.push('');
-    this.isHidden = false;
+    this.btnRemoveIsHidden = false;
   }
 
   sortear() {
@@ -89,11 +125,29 @@ export class SorteoComponent {
         this.guardarSorteo()
 
         break;
+      
+      case '2':
+        this.isSorteado = true;
+        for (let i = 0; i < this.teamSelected; i++) {
+          for (let j = 0; j < this.pxeSelected; j++) {
+            const numeroAleatorio = Math.floor(Math.random() * this.valorInput.length);
+            if(j==0){
+              this.resultadoSorteo.push(this.valorInput[numeroAleatorio]);
+            } else {
+              this.resultadoSorteo[rCount] += (' - ' + this.valorInput[numeroAleatorio].toString());
+              
+            }
+            this.valorInput.splice(numeroAleatorio, 1);
+
+          }
+          rCount++
+        }
+        this.guardarSorteo()
+
+        break
 
       default:
         this.isSorteado = true;
-
-        // const pCount = this.inputCount;
 
         for (let i = 0; i < pCount; i++) {
           const numeroAleatorio = Math.floor(Math.random() * this.valorInput.length);
@@ -147,8 +201,14 @@ export class SorteoComponent {
     this.inputArray.splice(index, 1);
     this.valorInput.splice(index, 1);
     if(this.inputCount==1){
-      this.isHidden = true;
+      this.btnRemoveIsHidden = true;
     }
+  }
+
+  resetForm(form: HTMLFormElement) {
+
+    form.reset();
+    this.ngOnInit();
   }
 
 }

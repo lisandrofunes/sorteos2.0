@@ -33,6 +33,30 @@
     gap: 0.2em;
 }
 
+.sorteo-control{
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.control{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 1em;
+    background: #2d3f4e;
+    padding-left: 0.5em;
+}
+
+.control select{
+    border: none;
+    background: #476c9b;
+    border-right: .5em solid transparent;
+    color: white;
+    padding: 0.5em;
+    border-radius: 0 16px 16px 0;
+}
+
 .container-btnRemove{
     display: flex;
     flex-direction: column;
@@ -86,17 +110,17 @@
 .form-input {
     padding: .5em;
     background: none;
-    border: 2px solid var(--color2);
+    border: 2px solid var(--color4);
     border-radius: 16px;
     color: var(--text);
     animation: fadeIn .5s ease-in-out;
-
 }
 
 .form-input:focus-visible {
     outline: none;
-    border: 2px solid var(--color1);
+    border: 2px solid var(--color2);
     transition: .5s;
+
 }
 
 .container-buttons {
@@ -113,7 +137,7 @@
     justify-content: center;
     border: none;
     cursor: pointer;
-    color: white;
+    color: var(--text);
 }
 
 .button-remove, .button-add{
@@ -138,7 +162,7 @@
 }
 
 .button-sortear {
-    background-color: var(--color2);
+    background-color: var(--color1);
     border-radius: 16px;
     padding: .5em 1em;
     user-select: none;

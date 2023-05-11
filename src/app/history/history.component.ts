@@ -1,6 +1,12 @@
+import { Token } from '@angular/compiler';
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { LoginComponent } from '../login/login.component';
 import { Sorteo } from '../models/sorteo';
+import { TokenDto } from '../models/token';
+import { HistoryService } from '../Service/history.service';
 import { SorteoService } from '../Service/sorteo.service';
+import { TokenService } from '../Service/token.service';
 
 @Component({
   selector: 'app-history',
@@ -10,9 +16,17 @@ import { SorteoService } from '../Service/sorteo.service';
 export class HistoryComponent {
   sorteos: Sorteo[] = [];
   flag=true;
+  email: string;
+  tokenGoogle: TokenDto
+  
+  public userDetails: any;
 
   constructor(
-    private sorteoService: SorteoService
+    private sorteoService: SorteoService,
+    private historyService: HistoryService,
+    private router: Router,
+    private tokenService: TokenService
+     
   ){ }
 
   ngOnInit(){
@@ -20,11 +34,15 @@ export class HistoryComponent {
   }
 
   loadSorteo(){
-    this.sorteoService.getSorteos().subscribe(
+    this.email = this.tokenService.getEmail();
+    console.log("tokenUser: " + this.email);
+
+    this.historyService.getSorteos(this.email).subscribe(
       res=>{this.sorteos=res},
       err=>console.log(err)
     )
   }
+
 
   personalizar(){
     if(this.flag){

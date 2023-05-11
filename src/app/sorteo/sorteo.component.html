@@ -1,6 +1,6 @@
 <div class="container-bg">
     <div class="container">
-        <div class="form-sorteo">
+        <form #formSorteo class="form-sorteo">
             <div class="title-form">Sorteo</div>
             <div class="container-podio" *ngIf="isSorteado;">
                 <div *ngFor="let win of resultadoSorteo; let i=index" class="podio">
@@ -11,17 +11,32 @@
             </div>
 
             <div class="container-participantes" *ngIf="!isSorteado">
+                <div class="sorteo-control" *ngIf="isMakeTeam">
+                    <div class="control">
+                        <span>Cantidad de equipos:</span>
+                        <select [(ngModel)]="teamSelected" name="teamSelected" (change)="inputs()">
+                            <option *ngFor="let equipo of equipos" [value]="equipo">{{equipo}}</option>
+                        </select>
+                    </div>
+                    <div class="control">
+                        <span>Participantes por equipo:</span>
+                        <select [(ngModel)]="pxeSelected" name="pxeSelected" (change)="inputs()">
+                            <option *ngFor="let participantes of pxe" [value]="participantes">{{participantes}}</option>
+                        </select>
+                    </div>
+                </div>
                 <div *ngFor="let input of inputArray; let i=index" class="participante participante{{i}}">
-                    <input type="text" [(ngModel)]="valorInput[i]" class="form-input input{{i}}" placeholder="Participante" autocomplete="off">
-                    <div [hidden]="isHidden" class="button button-remove" (click)="borrar(i)"><i class="fa-solid fa-trash-can"></i></div>
+                    <input type="text" [(ngModel)]="valorInput[i]" name="input{{i}}" class="form-input input{{i}}" placeholder="Participante" autocomplete="off">
+                    <div [hidden]="btnRemoveIsHidden" class="button button-remove" (click)="borrar(i)"><i class="fa-solid fa-trash-can"></i></div>
                 </div>
             </div>
 
             <div class="container-buttons">
-                <button class="button button-add" (click)="addParticipante()"><i class="fa-solid fa-plus"></i></button>
-                <button class="button button-sortear" (click)="sortear()">Sortear</button>
+                <button [hidden]="isMakeTeam" class="button button-add" (click)="addParticipante()"><i class="fa-solid fa-plus"></i></button>
+                <button [hidden]="isSorteado" class="button button-sortear" (click)="sortear()">Sortear</button>
+                <button [hidden]="!isSorteado" class="button button-sortear" (click)="resetForm(formSorteo)">Volver a sortear</button>
             </div>
-        </div>
+        </form>
 
         <div class="toast-container position-fixed top-0 end-0 p-3">
             <div id="liveToast" class="toast bg-secondary text-light" role="alert" aria-live="assertive"

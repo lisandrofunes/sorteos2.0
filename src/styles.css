@@ -1,12 +1,36 @@
 /* You can add global styles to this file, and also import other style files */
 :root {
-    --background1: #191f24;
+    --background1: #1f1f1f;
     --background2: #101417;
-    --text: #ADD9F4;
-    --color1: #468C98;
-    --color2: #476C9B;
-    --color3: #c5181e;
-    --color4: #37a746;
+    --text: #d8f3dc;
+    --color1: #95d5b2;
+    --color2: #74c69d;
+    --color3: #52b788;
+    --color4: #40916c;
+    --color5: #2d6a4f;
+    --color6: #1b4332;    
+    --color7: #081c15;
+
+    --Fondo-oscuro: #222831;
+    --Fondo-claro: #f2f2f2;
+    --Botón-primario: #00adb5;
+    --Botón-secundario: #393e46;
+    --Texto-principal: #eeeeee;
+    --Texto-secundario: #777777;
+
+    --background2: #0d1b2a;
+    --background2: #101417;
+    --background1: #1b263b;
+    --text: #e0e1dd;
+    --color1: #476c9b;
+    --color2: #778da9;
+
+    --color3: #52b788;
+    --color4: #40916c;
+    --color5: #2d6a4f;
+    --color6: #1b4332;    
+    --color7: #081c15;
+
 }
 
 .container-bg {

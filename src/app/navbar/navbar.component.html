@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top bg-dark" data-bs-theme="dark">
-    <div class="container-fluid">
+    <div class="container container-fluid">
         <a class="navbar-brand" routerLink="sorteo/0">Sorteos</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -10,18 +10,38 @@
                 <li class="nav-item">
                     <a class="nav-link" routerLink="sorteo/0" routerLinkActive="active" ariaCurrentWhenActive="page"><i class="fa-solid fa-user"></i>Sorteo Simple</a>
                 </li>
+                
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="sorteo/1" routerLinkActive="active" ariaCurrentWhenActive="page"><i class="fa-solid fa-user-group"></i>Formar Parejas</a>
+                    <a class="nav-link" routerLink="sorteo/2" routerLinkActive="active" ariaCurrentWhenActive="page"><i class="fa-solid fa-shield-halved"></i>Formar Equipos</a>
+                    <!-- <i class="fa-solid fa-user-group"></i> -->
                 </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="sorteo/1" routerLinkActive="active" ariaCurrentWhenActive="page"><i class="fa-solid fa-trophy"></i>Torneo</a>
+                </li>
+
                 <li class="nav-item">
                     <a class="nav-link" routerLink="history" routerLinkActive="active" ariaCurrentWhenActive="page"><i class="fa-solid fa-book"></i>Mis Sorteos</a>
                 </li>
 
             </ul>
             <ul class="navbar-nav d-flex">
-                <li class="nav-item">
+
+                <li *ngIf="!isLogged" class="nav-item">
                     <a class="nav-link" routerLink="login" routerLinkActive="active" ariaCurrentWhenActive="page"><i class="fa-solid fa-right-to-bracket"></i>Iniciar Sesion</a>
                 </li>
+                <!-- <li *ngIf="isLogged" class="nav-item" (click)="logOut()">
+                    <a class="nav-link" routerLinkActive="active" ariaCurrentWhenActive="page"><i class="fa-solid fa-right-to-bracket"></i>Cerrar Secion</a>
+                </li> -->
+
+                <div *ngIf="isLogged" class="dropdown">
+                    <button class="userOptions" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="{{photoUrl}}" alt="" class="userPhoto rounded-circle me-2"><b>{{name}}</b></button>
+                    <ul class="dropdown-menu me-2">
+                        <li><a class="dropdown-item" href="#">Mis Sorteos</a></li>
+                        <li (click)="logOut()"><a class="dropdown-item" href="#">Cerrar Sesión</a></li>
+                    </ul>
+                </div>
             </ul>
         </div>
     </div>
