@@ -3,6 +3,7 @@ import { ActivatedRoute, ActivatedRouteSnapshot, NavigationEnd, Router } from '@
 import { ParticipanteHandle } from '../models/participante';
 import { Sorteo } from '../models/sorteo';
 import { SorteoService } from '../Service/sorteo.service';
+import { TokenService } from '../Service/token.service';
 
 @Component({
   selector: 'app-sorteo',
@@ -30,7 +31,8 @@ export class SorteoComponent {
   constructor(
     private sorteoService: SorteoService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private tokenService: TokenService
   ) { }
 
   ngOnInit(): void {
@@ -168,7 +170,8 @@ export class SorteoComponent {
     }
 
     const sorteoFormData = this.prepareForData();
-    this.sorteoService.sortear(sorteoFormData).subscribe(
+    const emailUser = this.tokenService.getEmail();
+    this.sorteoService.sortear(emailUser, sorteoFormData).subscribe(
       data => { console.log("sorteo correcto") },
       err => { console.log("sorteo incorrecto") }
     );

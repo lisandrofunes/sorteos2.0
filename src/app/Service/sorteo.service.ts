@@ -16,8 +16,8 @@ export class SorteoService {
     return this.http.get<Sorteo[]>(this.url + 'lista');
   }
 
-  sortear(participantes: FormData): Observable<any> {
-    return this.http.post<any>(this.url + 'create', participantes);
+  sortear(emailUser: string, participantes: FormData): Observable<any> {
+    return this.http.post<any>(this.url + `create/${emailUser}`, participantes);
   }
 
   eliminar(id:number):Observable<any>{
