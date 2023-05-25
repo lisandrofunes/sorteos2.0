@@ -2,12 +2,40 @@
     <div class="container">
         <form #formSorteo class="form-sorteo">
             <div class="title-form">Sorteo</div>
+
             <div class="container-podio" *ngIf="isSorteado;">
                 <div *ngFor="let win of resultadoSorteo; let i=index" class="podio">
                     <span class="position">{{i+1}}°</span>
                     <span class="win1">{{resultadoSorteo[i]}}</span>
                     <!-- <img src="./trophy/1.svg" alt="Primero" style="width: 80px;"> -->
                 </div>
+            </div>
+
+            <div class="container-tournament" *ngIf="isTournament">
+                <div class="playoff">
+                    playoff
+                    <div class="bracket" *ngFor="let brackets of po; let i=index">
+                        <div class="bracketPosition">
+                            {{i+1}}
+                        </div>
+                        
+                        <ul class="teamContainer">
+                            <li *ngFor="let team of brackets">{{ team }}</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="nextRound">
+                    next
+                    <div class="bracket" *ngFor="let brackets of norm">
+                        <ul class="teamContainer">
+                            <li *ngFor="let team of brackets">{{ team }}</li>
+                            <!-- <hr> -->
+                        </ul>
+                    </div>
+
+                </div>
+                  
             </div>
 
             <div class="container-participantes" *ngIf="!isSorteado">

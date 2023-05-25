@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { SocialAuthService } from "@abacritt/angularx-social-login";
-import { SocialUser, GoogleLoginProvider } from "@abacritt/angularx-social-login";
+import { GoogleInitOptions, GoogleLoginProvider, SocialAuthService } from "@abacritt/angularx-social-login";
+import { SocialUser } from "@abacritt/angularx-social-login";
 import { Router } from '@angular/router';
 import { TokenService } from '../Service/token.service';
 import { OauthService } from '../Service/oauth.service';

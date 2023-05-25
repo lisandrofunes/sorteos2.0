@@ -19,6 +19,7 @@ export class SorteoComponent {
   resultadoSorteo: string[] = [];
   participantes: ParticipanteHandle[] = [];
   isSorteado = false;
+  isTournament = false;
   btnRemoveIsHidden = true;
   equipos = [2, 3, 4, 5];
   pxe = [2, 3, 4, 5];
@@ -27,6 +28,8 @@ export class SorteoComponent {
   pxeSelected = this.pxe[0]
   isMakeTeam = false;
 
+  po: string[][] = []
+  norm: string[][] = []
 
   constructor(
     private sorteoService: SorteoService,
@@ -76,13 +79,13 @@ export class SorteoComponent {
       break;
 
       case '1':
-        titleSorteo!.innerHTML = "Enfrentamientos";
-      break;
-
-      case '2':
         titleSorteo!.innerHTML = "Formar Equipos";
         this.isMakeTeam = true;
         this.inputs();
+      break;
+
+      case '2':
+        titleSorteo!.innerHTML = "Torneos";
       break;
     
       default:
@@ -104,31 +107,8 @@ export class SorteoComponent {
     const parametro = this.route.snapshot.paramMap.get('id');
 
     switch (parametro) {
-      case '1':
-        this.isSorteado = true;
-
-        if(pCount%2==0){
-          console.log("sorteo posible")
-        } else{
-          console.log("advertencia")
-        }
-
-        for (let i = 0; i < pCount; i++) {
-          const numeroAleatorio = Math.floor(Math.random() * this.valorInput.length);
-          if(i%2==0){
-            this.resultadoSorteo.push(this.valorInput[numeroAleatorio]);
-          } else {
-            this.resultadoSorteo[rCount] += (' - ' + this.valorInput[numeroAleatorio].toString());
-            rCount++
-          }
-          this.valorInput.splice(numeroAleatorio, 1);
-        }
-
-        this.guardarSorteo()
-
-        break;
       
-      case '2':
+      case '1':
         this.isSorteado = true;
         for (let i = 0; i < this.teamSelected; i++) {
           for (let j = 0; j < this.pxeSelected; j++) {
@@ -148,6 +128,85 @@ export class SorteoComponent {
 
         break
 
+      case '2':
+        var rounds;
+        var teamsFR; //teams in first round
+        var brackets;
+        var playOff;
+        var iterador;
+
+
+        
+        this.isTournament = true;
+
+        rounds = Math.ceil(Math.log(pCount)/Math.log(2));
+        teamsFR = Math.pow(2,rounds);
+        brackets = teamsFR / 2;
+        playOff = brackets - (teamsFR - pCount);
+        iterador = pCount+playOff;
+
+        console.log(rounds, teamsFR, brackets, playOff, iterador);
+
+        var y = 0;
+        var POcount = 0;
+        var normalized: boolean;
+        var POi = 0; //iterador de playoff's
+        var normCount = 0;
+        for (let i = 0; i < iterador; i++) {
+          const numeroAleatorio = Math.floor(Math.random() * this.valorInput.length);
+
+          if(playOff!=0){
+            normalized = false;
+            
+            if (this.po[POi] === undefined) {
+              this.po[POi] = [];
+            }
+            
+            this.po[POi].push(this.valorInput[numeroAleatorio]);
+            this.valorInput.splice(numeroAleatorio, 1);
+
+            console.log("playoff "+(POi+1)+": " + this.po[POi]);
+            
+            POcount++;
+            
+            if(POcount==2){
+              POi++;
+              playOff--;
+              POcount=0;
+            }
+          } else{
+            
+            if(normalized==false){
+              for (let j = 0; j < POi; j++) {
+                this.valorInput.push("PlayOff " + (j+1));
+              }
+              normalized = true;
+            }
+            
+
+            if (this.norm[y] === undefined) {
+              this.norm[y] = [];
+            }
+            
+            this.norm[y].push(this.valorInput[numeroAleatorio]);
+            this.valorInput.splice(numeroAleatorio, 1);
+            
+            console.log("next " +y+": " + this.norm[y]);
+
+            normCount++;
+            if(normCount==2){
+              y++;
+              normCount=0;
+            }
+          }
+
+        }
+        
+
+        // this.guardarSorteo()
+
+        break;
+            
       default:
         this.isSorteado = true;
 
