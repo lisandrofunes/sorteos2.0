@@ -3,7 +3,7 @@
         <form #formSorteo class="form-sorteo">
             <div class="title-form">Sorteo</div>
 
-            <div class="container-podio" *ngIf="isSorteado;">
+            <div class="container-podio" *ngIf="isPodio;">
                 <div *ngFor="let win of resultadoSorteo; let i=index" class="podio">
                     <span class="position">{{i+1}}°</span>
                     <span class="win1">{{resultadoSorteo[i]}}</span>
@@ -11,34 +11,7 @@
                 </div>
             </div>
 
-            <div class="container-tournament" *ngIf="isTournament">
-                <div class="playoff">
-                    playoff
-                    <div class="bracket" *ngFor="let brackets of po; let i=index">
-                        <div class="bracketPosition">
-                            {{i+1}}
-                        </div>
-                        
-                        <ul class="teamContainer">
-                            <li *ngFor="let team of brackets">{{ team }}</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="nextRound">
-                    next
-                    <div class="bracket" *ngFor="let brackets of norm">
-                        <ul class="teamContainer">
-                            <li *ngFor="let team of brackets">{{ team }}</li>
-                            <!-- <hr> -->
-                        </ul>
-                    </div>
-
-                </div>
-                  
-            </div>
-
-            <div class="container-participantes" *ngIf="!isSorteado">
+            <div class="container-participantes" *ngIf="!isSorteado" >
                 <div class="sorteo-control" *ngIf="isMakeTeam">
                     <div class="control">
                         <span>Cantidad de equipos:</span>
@@ -59,8 +32,8 @@
                 </div>
             </div>
 
-            <div class="container-buttons">
-                <button [hidden]="isMakeTeam" class="button button-add" (click)="addParticipante()"><i class="fa-solid fa-plus"></i></button>
+            <div class="container-buttons" >
+                <button [hidden]="isSorteado" class="button button-add" (click)="addParticipante()"><i class="fa-solid fa-plus"></i></button>
                 <button [hidden]="isSorteado" class="button button-sortear" (click)="sortear()">Sortear</button>
                 <button [hidden]="!isSorteado" class="button button-sortear" (click)="resetForm(formSorteo)">Volver a sortear</button>
             </div>

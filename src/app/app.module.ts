@@ -12,6 +12,7 @@ import { MainComponent } from './main/main.component';
 import { SocialLoginModule, SocialAuthServiceConfig, GoogleSigninButtonModule } from '@abacritt/angularx-social-login';
 import { GoogleLoginProvider,FacebookLoginProvider} from '@abacritt/angularx-social-login';
 import { LoginComponent } from './login/login.component';
+import { TournamentComponent } from './tournament/tournament.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { LoginComponent } from './login/login.component';
     NavbarComponent,
     MainComponent,
     LoginComponent,
+    TournamentComponent,
   ],
   imports: [
     BrowserModule,

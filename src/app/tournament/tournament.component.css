@@ -1,0 +1,55 @@
+/* Resultado */
+.container-tournament{
+    display: flex;
+    gap: 2em;
+    color: white;
+}
+
+.round{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 180px;
+}
+
+.match{
+    display: flex;
+    margin-bottom: 1em;
+}
+
+.idMatch{
+    padding: 0.5em;
+    background-color: #314968;
+    display: flex;
+    align-items: center;
+    border-radius: 10px 0 0 10px;
+}
+
+.teamContainer{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.team{
+    background-color: var(--color1);
+    padding: .5em;
+}
+
+.team:first-child{
+    border-radius: 0 10px 0 0;
+    border-bottom: 1px solid white;
+}
+
+.team:last-child{
+    border-radius: 0 0 10px 0;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 100%;
+    }
+}

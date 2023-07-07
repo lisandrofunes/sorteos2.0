@@ -45,3 +45,96 @@
     align-items: center;
     height: 100vh;
 }
+
+.form-sorteo {
+    background-color: var(--background1);
+    color: var(--text);
+    padding: 1em;
+    border-radius: 20px;
+    position: absolute;
+    animation: fadeIn .5s;
+}
+
+.title-form{
+    display: flex;
+    justify-content: center;
+    font-size: 2em;
+    font-weight: bold;
+    /* position: absolute; */
+    top: .5em;
+}
+
+.container-participantes {
+    display: flex;
+    flex-direction: column;
+}
+
+.participante{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 1em;
+    justify-content: space-between;
+}
+
+.form-input {
+    padding: .5em;
+    background-color: #2f3e5b;
+    border: 2px solid #2f3e5b;
+    border-radius: 16px;
+    color: var(--text);
+    animation: fadeIn .5s ease-in-out;
+    transition: .5s;
+}
+
+.form-input:focus-visible {
+    outline: none;
+    border: 2px solid var(--color3);
+    background-color: var(--background1);
+    transition: .5s;
+
+}
+
+/* buttons */
+.container-buttons {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    position: relative;
+}
+
+.button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    cursor: pointer;
+    color: var(--text);
+}
+
+.button-remove, .button-add{
+    border-radius: 50%;
+}
+
+.button-remove{
+    width: 25px;
+    height: 25px;
+    animation: fadeIn 1s;
+    color: #808080;
+    /* background: var(--color3); */
+}
+
+.button-add {
+    width: 40px;
+    height: 40px;
+    background-color: var(--color4);
+    position: absolute;
+    left: 0;
+}
+
+.button-sortear, .button-reset {
+    background-color: var(--color1);
+    border-radius: 16px;
+    padding: .5em 1em;
+    user-select: none;
+}

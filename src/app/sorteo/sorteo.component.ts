@@ -1,7 +1,6 @@
-import { Component, ViewChild } from '@angular/core';
-import { ActivatedRoute, ActivatedRouteSnapshot, NavigationEnd, Router } from '@angular/router';
+import { Component} from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ParticipanteHandle } from '../models/participante';
-import { Sorteo } from '../models/sorteo';
 import { SorteoService } from '../Service/sorteo.service';
 import { TokenService } from '../Service/token.service';
 
@@ -12,14 +11,13 @@ import { TokenService } from '../Service/token.service';
 })
 
 export class SorteoComponent {
-  @ViewChild('formSorteo') formSorteo!: HTMLFormElement;
   inputCount = 1;
   inputArray = [''];
   valorInput = [''];
   resultadoSorteo: string[] = [];
   participantes: ParticipanteHandle[] = [];
   isSorteado = false;
-  isTournament = false;
+  isPodio = false;
   btnRemoveIsHidden = true;
   equipos = [2, 3, 4, 5];
   pxe = [2, 3, 4, 5];
@@ -34,7 +32,6 @@ export class SorteoComponent {
   constructor(
     private sorteoService: SorteoService,
     private route: ActivatedRoute,
-    private router: Router,
     private tokenService: TokenService
   ) { }
 
@@ -71,7 +68,8 @@ export class SorteoComponent {
     this.resultadoSorteo = [];
     this.participantes = [];
     this.isSorteado = false;
-  
+    this.isPodio = false;
+
     const titleSorteo = document.querySelector('.title-form');
     switch (parametro) {
       case '0':
@@ -80,12 +78,7 @@ export class SorteoComponent {
 
       case '1':
         titleSorteo!.innerHTML = "Formar Equipos";
-        this.isMakeTeam = true;
-        this.inputs();
-      break;
 
-      case '2':
-        titleSorteo!.innerHTML = "Torneos";
       break;
     
       default:
@@ -109,7 +102,11 @@ export class SorteoComponent {
     switch (parametro) {
       
       case '1':
+        this.isMakeTeam = true;
+        this.inputs();
+        
         this.isSorteado = true;
+        this.isPodio = true;
         for (let i = 0; i < this.teamSelected; i++) {
           for (let j = 0; j < this.pxeSelected; j++) {
             const numeroAleatorio = Math.floor(Math.random() * this.valorInput.length);
@@ -128,87 +125,9 @@ export class SorteoComponent {
 
         break
 
-      case '2':
-        var rounds;
-        var teamsFR; //teams in first round
-        var brackets;
-        var playOff;
-        var iterador;
-
-
-        
-        this.isTournament = true;
-
-        rounds = Math.ceil(Math.log(pCount)/Math.log(2));
-        teamsFR = Math.pow(2,rounds);
-        brackets = teamsFR / 2;
-        playOff = brackets - (teamsFR - pCount);
-        iterador = pCount+playOff;
-
-        console.log(rounds, teamsFR, brackets, playOff, iterador);
-
-        var y = 0;
-        var POcount = 0;
-        var normalized: boolean;
-        var POi = 0; //iterador de playoff's
-        var normCount = 0;
-        for (let i = 0; i < iterador; i++) {
-          const numeroAleatorio = Math.floor(Math.random() * this.valorInput.length);
-
-          if(playOff!=0){
-            normalized = false;
-            
-            if (this.po[POi] === undefined) {
-              this.po[POi] = [];
-            }
-            
-            this.po[POi].push(this.valorInput[numeroAleatorio]);
-            this.valorInput.splice(numeroAleatorio, 1);
-
-            console.log("playoff "+(POi+1)+": " + this.po[POi]);
-            
-            POcount++;
-            
-            if(POcount==2){
-              POi++;
-              playOff--;
-              POcount=0;
-            }
-          } else{
-            
-            if(normalized==false){
-              for (let j = 0; j < POi; j++) {
-                this.valorInput.push("PlayOff " + (j+1));
-              }
-              normalized = true;
-            }
-            
-
-            if (this.norm[y] === undefined) {
-              this.norm[y] = [];
-            }
-            
-            this.norm[y].push(this.valorInput[numeroAleatorio]);
-            this.valorInput.splice(numeroAleatorio, 1);
-            
-            console.log("next " +y+": " + this.norm[y]);
-
-            normCount++;
-            if(normCount==2){
-              y++;
-              normCount=0;
-            }
-          }
-
-        }
-        
-
-        // this.guardarSorteo()
-
-        break;
-            
       default:
         this.isSorteado = true;
+        this.isPodio = true;
 
         for (let i = 0; i < pCount; i++) {
           const numeroAleatorio = Math.floor(Math.random() * this.valorInput.length);
@@ -268,7 +187,6 @@ export class SorteoComponent {
   }
 
   resetForm(form: HTMLFormElement) {
-
     form.reset();
     this.ngOnInit();
   }
