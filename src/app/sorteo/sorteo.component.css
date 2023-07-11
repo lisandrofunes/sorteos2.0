@@ -1,26 +1,4 @@
-.sorteo-control{
-    display: flex;
-    flex-direction: column;
-    gap: 1em;
-}
 
-.control{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-radius: 1em;
-    background: #2d3f4e;
-    padding-left: 0.5em;
-}
-
-.control select{
-    border: none;
-    background: #476c9b;
-    border-right: .5em solid transparent;
-    color: white;
-    padding: 0.5em;
-    border-radius: 0 16px 16px 0;
-}
 
 .container-btnRemove{
     display: flex;

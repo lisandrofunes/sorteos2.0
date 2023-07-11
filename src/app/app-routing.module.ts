@@ -5,6 +5,7 @@ import { LoginComponent } from './login/login.component';
 import { MainComponent } from './main/main.component';
 import { SorteoComponent } from './sorteo/sorteo.component';
 import { TournamentComponent } from './tournament/tournament.component';
+import { TeamsComponent } from './teams/teams.component';
 
 const routes: Routes = [
   {path: '', component: MainComponent},
@@ -12,6 +13,7 @@ const routes: Routes = [
   {path: 'history', component: HistoryComponent},
   {path: 'login', component: LoginComponent},
   {path: 'tournament', component: TournamentComponent},
+  {path: 'teams', component: TeamsComponent},
   {path: '**', redirectTo: '', pathMatch:'full'}
 
   // {path: '', redirectTo: '/portafolio', pathMatch:'full'},

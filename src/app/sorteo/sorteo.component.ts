@@ -78,7 +78,7 @@ export class SorteoComponent {
 
       case '1':
         titleSorteo!.innerHTML = "Formar Equipos";
-
+        this.isMakeTeam = true;
       break;
     
       default:
@@ -102,11 +102,11 @@ export class SorteoComponent {
     switch (parametro) {
       
       case '1':
-        this.isMakeTeam = true;
+        // this.isMakeTeam = true;
         this.inputs();
         
         this.isSorteado = true;
-        this.isPodio = true;
+        
         for (let i = 0; i < this.teamSelected; i++) {
           for (let j = 0; j < this.pxeSelected; j++) {
             const numeroAleatorio = Math.floor(Math.random() * this.valorInput.length);

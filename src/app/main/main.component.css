@@ -1,3 +1,39 @@
+.container-card{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1em;
+}
+
+.card{
+    background-color: var(--background1);
+    color: white;
+    border-radius: 20px;
+}
+
+.card:first-child{
+    animation: cardIn .5s ease-in-out forwards;
+}
+
+.card:nth-child(2){
+    opacity: 0;
+    animation: cardIn .5s ease-in-out forwards;
+    animation-delay: 0.2s;
+}
+
+.card:nth-child(3){
+    opacity: 0;
+    animation: cardIn .5s ease-in-out forwards;
+    animation-delay: 0.4s;
+}
+
+.card:nth-child(4){
+    opacity: 0;
+    animation: cardIn .5s ease-in-out forwards;
+    animation-delay: 0.6s;
+}
+
 .card-icon{
     display: flex;
     justify-content: center;
@@ -6,4 +42,27 @@
 
 .card-icon i{
     font-size: 60px;
+}
+
+.card-title{
+    border-bottom: 2px solid rgba(255, 255, 255, 0.5);
+    padding-bottom: 0.5em;
+    text-align: center;
+}
+
+.card-body{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+@keyframes cardIn {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }

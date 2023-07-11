@@ -29,21 +29,23 @@
     display: flex;
     flex-direction: column;
     width: 100%;
+    background-color: var(--color1);
+    border-radius: 10px;
 }
 
 .team{
-    background-color: var(--color1);
+    /* background-color: var(--color1); */
     padding: .5em;
 }
 
 .team:first-child{
-    border-radius: 0 10px 0 0;
+    /* border-radius: 0 10px 0 0; */
     border-bottom: 1px solid white;
 }
 
-.team:last-child{
+/* .team:last-child{
     border-radius: 0 0 10px 0;
-}
+} */
 
 @keyframes fadeIn {
     0% {

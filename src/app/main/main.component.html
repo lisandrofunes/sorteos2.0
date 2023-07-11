@@ -1,13 +1,15 @@
 <div class="container-bg">
-    <div class="container">
+    <div class="container container-form">
+
+      <div class="container-card">
 
         <div class="card" style="width: 18rem;">
             <!-- <img src="" class="card-img-top" alt=""> -->
             <div class="card-icon"><i class="fa-solid fa-user"></i></div>
             <div class="card-body">
               <h5 class="card-title">Sorteo Simple</h5>
-              <p class="card-text">Realiza una seleccion al azar entre los participantes ingresados. Puede ingresar libremente la cantidad de participantes que necesite y elegir la cantidad de ganadores deseados.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
+              <p class="card-text">Realiza una selección al azar entre todos los participantes ingresados para determinar el ganador de un sorteo.</p>
+              <a routerLink="sorteo/0" class="btn btn-success">Realizar sorteo</a>
             </div>
         </div>
 
@@ -15,8 +17,8 @@
             <div class="card-icon"><i class="fa-solid fa-shield-halved"></i></div>
             <div class="card-body">
               <h5 class="card-title">Formar Equipos</h5>
-              <p class="card-text">Realiza una distribucion al azar de los participantes ingresados para formar equipos. Puede establecer la cantidad de equipos e integrantes.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
+              <p class="card-text">Distribuye al azar los participantes ingresados para formar equipos. Establezca la cantidad de equipos e integrantes.</p>
+              <a routerLink="teams" class="btn btn-success">Sortear equipos</a>
             </div>
         </div>
 
@@ -24,8 +26,8 @@
             <div class="card-icon"><i class="fa-solid fa-trophy"></i></div>
             <div class="card-body">
               <h5 class="card-title">Torneo</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
+              <p class="card-text">Organiza torneos de manera eficiente, estableciendo los enfrentamientos necesarios hasta hasta llegar a la final del torneo.</p>
+              <a routerLink="tournament" class="btn btn-success">Sortear torneo</a>
             </div>
         </div>
 
@@ -33,11 +35,10 @@
             <div class="card-icon"><i class="fa-solid fa-book"></i></div>
             <div class="card-body">
               <h5 class="card-title">Mis Sorteos</h5>
-              <p class="card-text">Acceda a su historial de sorteos generados</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
+              <p class="card-text">Acceda a su historial de sorteos generados. Revise los sorteos anteriores y sus detalles para un seguimiento fácil y rápido.</p>
+              <a routerlink="history" class="btn btn-success">Ir a mis sorteos</a>
             </div>
         </div>
-
-
+      </div>
     </div>
 </div>

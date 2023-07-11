@@ -49,7 +49,6 @@ export class TournamentComponent {
     this.widthFormFrom = this.form.clientWidth;
     this.initialWidthForm = this.form.clientWidth;
     this.heightFormFrom = this.form.clientHeight;
-    
   }
 
   addParticipante() {

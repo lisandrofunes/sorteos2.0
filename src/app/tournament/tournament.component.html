@@ -1,11 +1,11 @@
 <div class="container-bg">
-  <div class="container">
+  <div class="container container-form">
       <form #formSorteo class="form-sorteo">
           <div class="title-form">Torneo</div>
 
           <div class="container-participantes" *ngIf="!isSorteado">
             <div *ngFor="let input of userInput; let i=index" class="participante participante{{i}}">
-              <input #inputRef type="text" [(ngModel)]="teams[i]" name="input{{i}}" class="form-input input{{i}}" placeholder="Participante" autocomplete="off">
+              <input #inputRef type="text" [(ngModel)]="teams[i]" name="input{{i}}" class="form-input input{{i}}" placeholder="Participante {{i+1}}" autocomplete="off">
               <div [hidden]="btnRemoveIsHidden" class="button button-remove" (click)="borrar(i)"><i class="fa-solid fa-trash-can"></i></div>
             </div>
           </div>

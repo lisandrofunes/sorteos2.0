@@ -1,0 +1,54 @@
+.sorteo-control{
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    margin-bottom: 1em;
+}
+
+.control{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 1em;
+    background: #08141e;
+    padding-left: 0.5em;
+}
+
+.control-input{
+    width: 3em;
+    padding: .2em .5em;
+    text-align: center;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+-webkit-appearance: none;
+-moz-appearance: none;
+appearance: none;
+margin: 0; 
+}
+
+/* result */
+.container-podio{
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    margin-bottom: 1em;
+}
+
+.team{
+    background-color: #08141e;
+    border-radius: 20px;
+    padding: .5em;
+    text-transform: capitalize;
+    font-size: 1.1em;
+}
+
+.headerTeam{
+    text-align: center;
+    border-bottom: 1px solid;
+    background-color: #476c9b;
+    margin: -0.5em -0.5em 0.5em;
+    padding: .5em;
+    border-radius: 20px 20px 0 0;
+}

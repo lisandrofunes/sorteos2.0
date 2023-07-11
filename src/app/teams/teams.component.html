@@ -1,0 +1,52 @@
+<div class="container-bg">
+    <div class="container container-form">
+        <form #formSorteo class="form-sorteo">
+            <div class="title-form">Formar Equipos</div>
+
+            <div class="container-podio" *ngIf="isSorteado;">
+                <div *ngFor="let team of resultadoSorteo; let i=index" class="team">
+                    <div class="headerTeam"><span>Equipo {{i+1}}</span></div>
+                    <li *ngFor="let player of team; let j=index" class="player">{{player}}</li>
+                </div>
+            </div>
+
+            <div class="container-participantes" *ngIf="!isSorteado" >
+                <div class="sorteo-control">
+                    <div class="control">
+                        <span>Cantidad de equipos:</span>
+                        <!-- <input type="number" class="form-input control-input" name="input" [(ngModel)]="inputTeams" (keydown)="handleKeyDown($event)" autocomplete="off"> -->
+                        <select [(ngModel)]="optionTeams" class="form-input control-input" name="optionTeams" (change)="addPlayer()">
+                            <option *ngFor="let teams of selectOptions" [value]="teams">{{teams}}</option>
+                        </select>
+                    </div>
+                    <div class="control">
+                        <span>Cantidad de integrantes:</span>
+                        <!-- <input type="number" class="form-input control-input" name="input2" [(ngModel)]="inputPlayers" (keydown)="handleKeyDown($event)" autocomplete="off"> -->
+                        <select [(ngModel)]="optionPlayers" class="form-input control-input" name="optionPlayers" (change)="addPlayer()">
+                            <option *ngFor="let players of selectOptions" [value]="players">{{players}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div *ngFor="let input of userInput; let i=index" class="participante participante{{i}}">
+                    <input type="text" [(ngModel)]="players[i]" name="input{{i}}" class="form-input input{{i}}" placeholder="Participante {{i+1}}" autocomplete="off">
+                </div>
+            </div>
+
+            <div class="container-buttons" >
+                <button [hidden]="isSorteado" class="button button-sortear" (click)="sortear()">Sortear</button>
+                <button [hidden]="!isSorteado" class="button button-sortear" (click)="resetForm(formSorteo)">Volver a sortear</button>
+            </div>
+        </form>
+
+        <div class="toast-container position-fixed top-0 end-0 p-3">
+            <div id="liveToast" class="toast bg-secondary text-light" role="alert" aria-live="assertive"
+                aria-atomic="true">
+                <div class="toast-header bg-warning">
+                    <strong class="me-auto">Advertencia</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body">Hay participantes sin completar.</div>
+            </div>
+        </div>
+    </div>
+</div>
